@@ -32,6 +32,8 @@ public class FirstBatch {
     private final BeforeRepository beforeRepository;
     private final AfterRepository afterRepository;
 
+    private final JobExecutionTimeListener jobExecutionTimeListener;
+
     @Bean
     public Job firstJob() {
 
@@ -39,6 +41,7 @@ public class FirstBatch {
 
         return new JobBuilder("firstJob", jobRepository)
                 .start(firstStep())
+                .listener(jobExecutionTimeListener)
                 .build();
     }
 
